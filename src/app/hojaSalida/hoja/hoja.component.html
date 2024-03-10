@@ -1,0 +1,30 @@
+<div class="father">
+
+    <form class="form" (ngSubmit)="createSheet()" [formGroup]="myForm">    
+    
+        <div class="info">
+            <span>Fecha: {{dateToday}}</span>
+                <div class="diver">
+                    <span>Chofer: </span>
+                    <input class="form-control" type="text" placeholder="Chofer" formControlName="driver" required>
+                </div>
+
+                <div class="electrician">
+                    <span>Electricista: </span>
+                    <input class="form-control" type="text" placeholder="Electricista" formControlName="electrician" required>
+                </div>
+
+                <ckeditor class="editor" [config]="{ forcePasteAsPlainText: false,pasteFromWordRemoveStyles: false }" formControlName="removedMaterials" #ckeditor required>
+                </ckeditor>
+                <button type="submit">Guardar</button>
+</div>
+
+
+
+
+
+
+
+
+    </form>
+</div>

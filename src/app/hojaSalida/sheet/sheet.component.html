@@ -1,0 +1,77 @@
+<form class="formulario" [formGroup]="fg" (ngSubmit)="onSubmit()">
+
+    <div class="button">
+      <button type="button" (click)="addLesson()">Agregar fila</button>
+    </div>
+  
+    <mat-table [dataSource]="dataSourcePacks">
+      <ng-container formArrayName="removedMaterials">
+
+        
+  
+        <!-- Cant Column -->
+        <ng-container matColumnDef="cantDesde">
+          <mat-header-cell *matHeaderCellDef> <h2>CANTIDAD</h2></mat-header-cell>
+          <mat-cell *matCellDef="let element;" [formGroup]="element">
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Number</mat-label>
+              <input type="text"
+                     placeholder="Pick one"
+                     aria-label="Number"
+                     matInput
+                     [formControl]="myControl"
+                     [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete">
+                @for (option of filteredOptions | async; track option) {
+                  <mat-option [value]="option">{{option}}</mat-option>
+                }
+              </mat-autocomplete>
+            </mat-form-field>
+
+
+            <!--<mat-form-field>
+              <mat-select matInput placeholder="Cantidad desde" formControlName="cantDesde" required>
+                @for (food of foods; track food) {
+                  <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
+                }
+              </mat-select>
+              <input matInput placeholder="Cantidad desde" formControlName="cantDesde" required>
+            
+            </mat-form-field>
+            -->
+          </mat-cell>
+        </ng-container>
+  
+        <!-- Precio Column -->
+        <ng-container matColumnDef="precio">
+          <mat-header-cell *matHeaderCellDef> <h2>MATERIAL</h2></mat-header-cell>
+          <mat-cell *matCellDef="let element;" [formGroup]="element">
+            <mat-form-field>
+              <input matInput placeholder="Precio" formControlName="precio" required>
+            </mat-form-field>
+          </mat-cell>
+        </ng-container>
+  
+        <!-- Delete Column -->
+        <ng-container matColumnDef="eliminar">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let element; index as i" [formGroup]="element">
+  
+            <button type="button" (click)="deleteLesson(i)">
+              <mat-icon matSuffix>delete</mat-icon>
+            </button>
+  
+          </mat-cell>
+        </ng-container>
+  
+        <!-- header titles -->
+  
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </ng-container>
+    </mat-table>
+  
+    <button class="btn-save" type="submit">Guardar</button>
+  
+  </form>
