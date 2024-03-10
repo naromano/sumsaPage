@@ -18,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { SheetComponent } from './hojaSalida/sheet/sheet.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 
 
 
@@ -25,7 +26,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
   declarations: [
     AppComponent,
     HojaComponent,
-    SheetComponent
+    SheetComponent,
+    AutocompleteComponent
   ],
   imports: [
     BrowserModule,
