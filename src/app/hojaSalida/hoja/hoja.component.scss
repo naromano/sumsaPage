@@ -1,3 +1,35 @@
-.editor{
-display: flex;
+.logo{
+    width: 10%;
+}
+
+.logoTitle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title{
+    text-align: center;
+}
+
+.inputs{
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    flex-wrap: wrap;
+}
+
+.pdf{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+}
+
+.logoPDF{
+    width: 10%;
+    margin-bottom: 20px;
+
 }

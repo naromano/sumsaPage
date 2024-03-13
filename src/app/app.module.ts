@@ -15,10 +15,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { SheetComponent } from './hojaSalida/sheet/sheet.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
+
 
 
 
@@ -26,8 +25,6 @@ import { AutocompleteComponent } from './components/autocomplete/autocomplete.co
   declarations: [
     AppComponent,
     HojaComponent,
-    SheetComponent,
-    AutocompleteComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +37,7 @@ import { AutocompleteComponent } from './components/autocomplete/autocomplete.co
     MatInputModule,
     MatIconModule,
     MatSelectModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
   ],
   providers: [
     provideAnimationsAsync()

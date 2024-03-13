@@ -1,30 +1,74 @@
 <div class="father">
+    <div class="logoTitle">
+        <img class="logo" src="../../../assets/LOGO SUMSA.jpg" alt="">
+        <h1 class="title">HOJA DE SALIDA</h1>
+    </div>
 
     <form class="form" (ngSubmit)="createSheet()" [formGroup]="myForm">    
     
         <div class="info">
-            <span>Fecha: {{dateToday}}</span>
-                <div class="diver">
-                    <span>Chofer: </span>
-                    <input class="form-control" type="text" placeholder="Chofer" formControlName="driver" required>
+            <div class="inputs">
+                <span class="date">Fecha: {{dateToday}}</span>
+                <div class="driver">
+                    <mat-form-field class="form-field">
+                        <mat-label>Chofer</mat-label>
+                        <mat-select class="select" formControlName="driver" required>
+                            <mat-option *ngFor="let driver of drivers" [value]="driver">{{driver}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
 
                 <div class="electrician">
-                    <span>Electricista: </span>
-                    <input class="form-control" type="text" placeholder="Electricista" formControlName="electrician" required>
+                    <mat-form-field class="form-field">
+                        <mat-label>Electricista</mat-label>
+                        <mat-select class="select" formControlName="electrician" required>
+                            <mat-option *ngFor="let electrician of electricians" [value]="electrician">{{electrician}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
-
-                <ckeditor class="editor" [config]="{ forcePasteAsPlainText: false,pasteFromWordRemoveStyles: false }" formControlName="removedMaterials" #ckeditor required>
-                </ckeditor>
-                <button type="submit">Guardar</button>
-</div>
-
-
-
-
-
-
-
-
+                <div class="truck">
+                    <mat-form-field class="form-field">
+                        <mat-label>Camion</mat-label>
+                        <mat-select class="select" formControlName="truck" required>
+                            <mat-option *ngFor="let truck of trucks" [value]="truck">{{truck}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="inCharge">
+                    <mat-form-field class="form-field">
+                        <mat-label>Encargado</mat-label>
+                        <mat-select class="select" formControlName="inCharge" required>
+                            <mat-option *ngFor="let inCharge of inCharges" [value]="inCharge">{{inCharge}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="workAndLocation">
+                    <mat-form-field class="form-field">
+                        <mat-label>OBRA O TAREA</mat-label>
+                        <input matInput class="input" type="text" placeholder="OBRA O TAREA" formControlName="workAndLocation" required>
+                    </mat-form-field>
+                </div>
+            </div>    
+            <div class="materialsRemoved">
+                <h2>MATERIALES RETIRADOS</h2>
+                <ckeditor class="editor" [config]="{ forcePasteAsPlainText: false,pasteFromWordRemoveStyles: false }" formControlName="removedMaterials" #ckeditor required></ckeditor>
+            </div>
+            <div class="example-button-row">
+                <button mat-button color="primary" type="submit">Guardar</button>
+            </div>
+        </div>
     </form>
+    <div class="pdf" id="content" hidden>
+        <img class="logoPDF" src="../../../assets/LOGO SUMSA.jpg" alt="">
+        <span>Fecha: {{dateToday}}</span>
+        <span>Chofer: {{myForm.get('driver').value}}</span>
+        <span>Electricista: {{myForm.get('electrician').value}}</span>
+        <span>Camion: {{myForm.get('truck').value}}</span>
+        <span>Encargado: {{myForm.get('inCharge').value}}</span>
+        <span>Obra o Tarea: {{myForm.get('workAndLocation').value}}</span>
+        <h3>MATERIALES RETIRADOS</h3>
+        <div [innerHTML]="renderizado1"></div>
+    </div>
 </div>
+
+
