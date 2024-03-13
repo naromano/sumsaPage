@@ -53,12 +53,12 @@
                 <h2>MATERIALES RETIRADOS</h2>
                 <ckeditor class="editor" [config]="{ forcePasteAsPlainText: false,pasteFromWordRemoveStyles: false }" formControlName="removedMaterials" #ckeditor required></ckeditor>
             </div>
-            <div class="example-button-row">
-                <button mat-button color="primary" type="submit">Guardar</button>
+            <div class="example-button-row buttonSubmit">    
+                    <button class="" mat-raised-button color="primary" type="submit">Guardar</button> 
             </div>
         </div>
     </form>
-    <div class="pdf" id="content" hidden>
+    <div *ngIf="activar" class="pdf" id="content">
         <img class="logoPDF" src="../../../assets/LOGO SUMSA.jpg" alt="">
         <span>Fecha: {{dateToday}}</span>
         <span>Chofer: {{myForm.get('driver').value}}</span>

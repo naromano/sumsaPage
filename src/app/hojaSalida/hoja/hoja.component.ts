@@ -77,9 +77,11 @@ export class HojaComponent implements OnInit {
 
       this.renderizado1 = this.sanitizer.bypassSecurityTrustHtml(
         this.myForm.get('removedMaterials')?.value
+        
       );
+      this.activar = true;
       setTimeout(() => {
-        this.activar = true;
+        
         const DATA = document.getElementById('content');
         const doc = new jsPDF('p', 'pt', 'a4');
         const options = {
@@ -91,10 +93,10 @@ export class HojaComponent implements OnInit {
             const img = canvas.toDataURL('image/PNG');
 
             // Add image Canvas to PDF
-            const bufferX = 15;
-            const bufferY = 15;
+            const bufferX = 30;
+            const bufferY = 30;
             const imgProps = (doc as any).getImageProperties(img);
-            const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+            const pdfWidth = doc.internal.pageSize.getWidth();
             const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
             doc.addImage(
               img,
@@ -110,11 +112,12 @@ export class HojaComponent implements OnInit {
           })
           .then((docResult) => {
             docResult.save(`${form.date}, ${form.electrician}.pdf`);
-            this.activar = true;
+            this.activar = false;
+            window.alert('Guardando y creando PDF, aguarde un momento y apriete "OK"')
+            window.location.reload()
           });
       }, 1000);
-
-      console.log(form);
+      
     } else {
       window.alert('FALTA COMPLETAR FORMULARIO');
     }
