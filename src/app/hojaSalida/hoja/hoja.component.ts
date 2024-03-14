@@ -10,6 +10,7 @@ import { PersonalService } from '../../services/personal.service';
 import { Sheet } from '../../Models/sheetModel';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { ExitSheetService } from '../../services/exit-sheet.service';
 
 @Component({
   selector: 'app-hoja',
@@ -52,7 +53,8 @@ export class HojaComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private sanitizer: DomSanitizer,
-    private personalServices: PersonalService
+    private personalServices: PersonalService,
+    private exitSheetService : ExitSheetService
   ) {}
 
   ngOnInit(): void {
@@ -60,9 +62,13 @@ export class HojaComponent implements OnInit {
     this.electricians = this.personalServices.getElectricians();
     this.trucks = this.personalServices.getTrucks();
     this.inCharges = this.personalServices.getInCharge();
+
+    this.exitSheetService.getExitSheets().subscribe(resp =>{
+      console.log(resp)
+    })
   }
 
-  createSheet(): void {
+  async createSheet() {
     if (this.myForm.valid) {
       const form: Sheet = {
         date: this.dateToday,
@@ -74,6 +80,9 @@ export class HojaComponent implements OnInit {
         removedMaterials: this.myForm.get('removedMaterials')?.value,
         returnedMaterials: '',
       };
+
+      const response = await  this.exitSheetService.addExitSheet(form)
+      console.log(response)
 
       this.renderizado1 = this.sanitizer.bypassSecurityTrustHtml(
         this.myForm.get('removedMaterials')?.value

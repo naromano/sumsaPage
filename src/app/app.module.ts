@@ -18,6 +18,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {MatButtonModule} from '@angular/material/button';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 
 
@@ -39,7 +41,9 @@ import {MatButtonModule} from '@angular/material/button';
     MatIconModule,
     MatSelectModule,
     MatAutocompleteModule,
-    MatButtonModule
+    MatButtonModule,
+    provideFirebaseApp(() => initializeApp({"projectId":"sumsa-3e0e1","appId":"1:160524587886:web:f90e3675aa38dac264677f","storageBucket":"sumsa-3e0e1.appspot.com","apiKey":"AIzaSyDFUASNA8w7-a3tL8nqggoHp0rVZxcIp-4","authDomain":"sumsa-3e0e1.firebaseapp.com","messagingSenderId":"160524587886"})),
+    provideFirestore(() => getFirestore())
   ],
   providers: [
     provideAnimationsAsync()
