@@ -1,0 +1,25 @@
+.logo {
+    width: 10%;
+  }
+  
+  .logoTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .title {
+    text-align: center;
+  }
+
+  ng-container{
+    width: 16.66%;
+  }
+
+tr{
+    height: 100px;
+}
+
+.deleteButton{
+    background-color: red;
+}

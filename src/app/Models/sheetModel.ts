@@ -1,8 +1,9 @@
 export class Sheet {
+  id?: string;
   date?: string;
   driver?: string;
   electrician?: string;
-  workAndLocation?: string;
+  departament?: string;
   removedMaterials?: string;
   returnedMaterials?: string;
   truck?: string;

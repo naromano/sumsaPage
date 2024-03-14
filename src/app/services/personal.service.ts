@@ -33,6 +33,14 @@ export class PersonalService {
     'GPP 127',
     'GLU 907',
   ];
+  departaments = [
+    'CAPITAL',
+    'LUJAN DE CUYO',
+    'PARQUE',
+    'VIALIDAD',
+    'CAPITAL/PARQUE',
+    'PARQUE/VIALIDAD',
+  ];
   electricians = [
     'ASTORGA EMANUEL',
     'ASTORGA RICARDO',
@@ -61,5 +69,9 @@ export class PersonalService {
   }
   getTrucks() {
     return this.trucks;
+  }
+
+  getDepartaments() {
+    return this.departaments;
   }
 }

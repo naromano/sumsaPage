@@ -1,3 +1,6 @@
+<div *ngIf="spinner" class="spinner-container">
+    <mat-spinner></mat-spinner>
+  </div>
 <div class="father">
     <div class="logoTitle">
         <img class="logo" src="../../../assets/LOGO SUMSA.jpg" alt="">
@@ -8,7 +11,7 @@
     
         <div class="info">
             <div class="inputs">
-                <span class="date">Fecha: {{dateToday}}</span>
+                <span class="date">Fecha: {{getDate()}}</span>
                 <div class="driver">
                     <mat-form-field class="form-field">
                         <mat-label>Chofer</mat-label>
@@ -44,8 +47,10 @@
                 </div>
                 <div class="workAndLocation">
                     <mat-form-field class="form-field">
-                        <mat-label>OBRA O TAREA</mat-label>
-                        <input matInput class="input" type="text" placeholder="OBRA O TAREA" formControlName="workAndLocation" required>
+                        <mat-label>Destino</mat-label>
+                        <mat-select class="select" formControlName="departament" required>
+                            <mat-option *ngFor="let departament of departaments" [value]="departament">{{departament}}</mat-option>
+                        </mat-select>
                     </mat-form-field>
                 </div>
             </div>    
@@ -60,12 +65,12 @@
     </form>
     <div *ngIf="activar" class="pdf" id="content">
         <img class="logoPDF" src="../../../assets/LOGO SUMSA.jpg" alt="">
-        <span>Fecha: {{dateToday}}</span>
+        <span>Fecha: {{getDate()}}</span>
         <span>Chofer: {{myForm.get('driver').value}}</span>
         <span>Electricista: {{myForm.get('electrician').value}}</span>
         <span>Camion: {{myForm.get('truck').value}}</span>
         <span>Encargado: {{myForm.get('inCharge').value}}</span>
-        <span>Obra o Tarea: {{myForm.get('workAndLocation').value}}</span>
+        <span>Destino:{{myForm.get('departament').value}}</span>
         <h3>MATERIALES RETIRADOS</h3>
         <div [innerHTML]="renderizado1"></div>
     </div>
