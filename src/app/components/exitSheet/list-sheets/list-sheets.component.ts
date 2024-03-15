@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Sheet } from '../../Models/sheetModel';
-import { ExitSheetService } from '../../services/exit-sheet.service';
+import { Sheet } from '../../../Models/sheetModel';
+import { ExitSheetService } from '../../../services/exit-sheet.service';
 import { Router } from '@angular/router';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-list-sheets',
@@ -26,15 +27,13 @@ export class ListSheetsComponent implements OnInit {
   }
 
   getSheets() {
-    this.exitSheetService.getExitSheets().subscribe((resp) => {
+    this.exitSheetService.getExitSheets().pipe(
+      map(sheets => sheets.filter(sheet => sheet.returnedMaterials === ''))
+    ).subscribe((resp) => {
       this.dataSource = resp;
-      this.sheets = resp;
-      console.log(this.sheets);
     });
   }
-
-  editSheet(sheet: Sheet) {}
-
+  
   async deleteSheet(sheet: Sheet) {
     try {
       const response = await this.exitSheetService.deleteExitSheet(sheet);

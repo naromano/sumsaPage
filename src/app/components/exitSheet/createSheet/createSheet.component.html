@@ -55,7 +55,7 @@
                 </div>
             </div>    
             <div class="materialsRemoved">
-                <h2>MATERIALES RETIRADOS</h2>
+                <h2>MATERIALES/LUMINARIAS RETIRADOS</h2>
                 <ckeditor class="editor" [config]="{ forcePasteAsPlainText: false,pasteFromWordRemoveStyles: false }" formControlName="removedMaterials" #ckeditor required></ckeditor>
             </div>
             <div class="example-button-row buttonSubmit">    
@@ -71,8 +71,8 @@
         <span>Camion: {{myForm.get('truck').value}}</span>
         <span>Encargado: {{myForm.get('inCharge').value}}</span>
         <span>Destino:{{myForm.get('departament').value}}</span>
-        <h3>MATERIALES RETIRADOS</h3>
-        <div [innerHTML]="renderizado1"></div>
+        <h3>MATERIALES/LUMINARIAS DEVUELTOS</h3>
+        <div [innerHTML]="renderizado"></div>
     </div>
 </div>
 

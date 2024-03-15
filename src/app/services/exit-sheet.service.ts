@@ -6,6 +6,7 @@ import {
   collectionData,
   deleteDoc,
   doc,
+  getDoc,
   updateDoc,
 } from '@angular/fire/firestore';
 import { Sheet } from '../Models/sheetModel';
@@ -27,20 +28,20 @@ export class ExitSheetService {
     return collectionData(sheetRef, { idField: 'id' }) as Observable<Sheet[]>;
   }
 
-  updateExitSheet(sheet: Sheet): Observable<Sheet> {
-    const sheetDocRef = doc(this.firestore, `exitSheets/${sheet.id}`);
-    const { id, ...updatedData } = sheet; // Eliminar el ID de la hoja antes de actualizar
-    return new Observable<Sheet>((observer) => {
-      updateDoc(sheetDocRef, updatedData)
-        .then(() => {
-          // Después de actualizar el documento, obtén los datos actualizados del documento
-          observer.next({ id, ...updatedData }); // Devolver el objeto Sheet actualizado
-          observer.complete();
-        })
-        .catch((error) => {
-          observer.error(error);
-        });
-    });
+  async getExitSheet(id: string){
+    try {
+      const sheetRef = doc(this.firestore, 'exitSheets', id);
+      const snapshot = await getDoc(sheetRef)
+      return snapshot.data() as Sheet;
+    } catch (error) {
+      throw error
+    };
+  }
+  
+  updateExitSheet(id: string, sheet: Sheet){
+    const sheetRef = doc(this.firestore, 'exitSheets', id)
+    return updateDoc(sheetRef, {...sheet});
+
   }
 
   deleteExitSheet(sheet: Sheet) {

@@ -42,8 +42,7 @@ export class MethodsService {
         docResult.save(`${sheet.truck}, ${sheet.date}.pdf`);
         activar = false;
         spinner = false;
-        window.alert('Apriete "OK" para descargar PDF');
-        window.location.reload();
+        
       });
   }
 }

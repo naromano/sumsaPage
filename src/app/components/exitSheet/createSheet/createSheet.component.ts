@@ -20,8 +20,7 @@ export class CreateSheetComponent implements OnInit {
   materialRemoved = new FormControl('');
   cantMaterialRemoved = new FormControl('');
 
-  renderizado1: SafeHtml = '';
-  renderizado2: SafeHtml = '';
+  renderizado: SafeHtml = '';
   activar = false;
   spinner = false;
 
@@ -95,6 +94,8 @@ export class CreateSheetComponent implements OnInit {
 
       setTimeout(() => {
         this.methodsService.downloadPdf(sheet, this.activar, this.spinner);
+        window.alert('Apriete "OK" para descargar PDF');
+        window.location.reload();
       }, 500);
     } else {
       window.alert('FALTA COMPLETAR FORMULARIO');
@@ -102,7 +103,7 @@ export class CreateSheetComponent implements OnInit {
   }
 
   renderHTML(sheet: Sheet) {
-    this.renderizado1 = this.sanitizer.bypassSecurityTrustHtml(
+    this.renderizado = this.sanitizer.bypassSecurityTrustHtml(
       sheet.removedMaterials
     );
   }

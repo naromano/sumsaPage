@@ -1,0 +1,23 @@
+<div *ngIf="spinner" class="spinner-container">
+    <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="mostrar" class="pdf" id="content">
+    <img class="logoPDF" src="../../../assets/LOGO SUMSA.jpg" alt="">
+    <span>Fecha: {{sheet.date}}</span>
+    <span>Chofer: {{sheet.driver}}</span>
+    <span>Electricista: {{sheet.electrician}}</span>
+    <span>Camion: {{sheet.truck}}</span>
+    <span>Encargado: {{sheet.inCharge}}</span>
+    <span>Destino: {{sheet.departament}}</span>
+    <div>
+        <h3>MATERIALES/LUMINARIAS RETIRADOS</h3>
+        <ckeditor  class="editor" [(ngModel)]="sheet.removedMaterials" [config]="{ forcePasteAsPlainText: false,pasteFromWordRemoveStyles: false }" #ckeditor required></ckeditor>
+    </div>
+    <div>
+        <h3>MATERIALES/LUMINARIAS DEVUELTOS</h3>
+        <ckeditor  class="editor" [(ngModel)]="sheet.returnedMaterials" [config]="{ forcePasteAsPlainText: false,pasteFromWordRemoveStyles: false }" #ckeditor required></ckeditor>
+    </div>
+</div>
+<div *ngIf="spinner === false" class="example-button-row buttonSubmit">    
+    <button class="" mat-raised-button color="primary" (click)="updateSheet()">Guardar</button> 
+</div>

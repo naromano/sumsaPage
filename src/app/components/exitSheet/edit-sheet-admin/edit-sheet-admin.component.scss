@@ -1,0 +1,24 @@
+.spinner-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999; /* Un valor alto para asegurar que esté en la parte superior */
+  }
+  
+.pdf {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5vw;
+  }
+  
+  .logoPDF {
+    width: 10%;
+    margin-bottom: 20px;
+  }
+
+  .buttonSubmit {
+    text-align: center;
+    margin-top: 20px;
+    justify-content: center;
+  }

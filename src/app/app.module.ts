@@ -5,10 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 //Componentes
 import { AppComponent } from './app.component';
 import { CreateSheetComponent } from './components/exitSheet/createSheet/createSheet.component';
-import { ListSheetsComponent } from './components/list-sheets/list-sheets.component';
+import { ListSheetsComponent } from './components/exitSheet/list-sheets/list-sheets.component';
 
 //Modulos
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,9 +26,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { EditSheetComponent } from './components/exitSheet/edit-sheet/edit-sheet.component';
+import { ListSheetsAdminComponent } from './components/exitSheet/list-sheets-admin/list-sheets-admin.component';
+import { EditSheetAdminComponent } from './components/exitSheet/edit-sheet-admin/edit-sheet-admin.component';
+import { ViewSheetComponent } from './components/exitSheet/view-sheet/view-sheet.component';
 
 @NgModule({
-  declarations: [AppComponent, CreateSheetComponent, ListSheetsComponent],
+  declarations: [AppComponent, CreateSheetComponent, ListSheetsComponent, EditSheetComponent, ListSheetsAdminComponent, EditSheetAdminComponent, ViewSheetComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -43,6 +47,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatAutocompleteModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    FormsModule,
     provideFirebaseApp(() =>
       initializeApp({
         projectId: 'sumsa-3e0e1',
