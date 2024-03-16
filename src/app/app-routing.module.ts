@@ -6,8 +6,10 @@ import { EditSheetComponent } from './components/exitSheet/edit-sheet/edit-sheet
 import { ListSheetsAdminComponent } from './components/exitSheet/list-sheets-admin/list-sheets-admin.component';
 import { EditSheetAdminComponent } from './components/exitSheet/edit-sheet-admin/edit-sheet-admin.component';
 import { ViewSheetComponent } from './components/exitSheet/view-sheet/view-sheet.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
+  { path: 'home', component: HomeComponent },
   { path: 'createSheet', component: CreateSheetComponent },
   { path: 'listSheets', component: ListSheetsComponent },
   { path: 'listSheetsAdmin', component: ListSheetsAdminComponent },
@@ -15,7 +17,7 @@ const routes: Routes = [
   { path: 'editSheet/:id', component: EditSheetComponent },
   { path: 'editSheetAdmin/:id', component: EditSheetAdminComponent },
   { path: 'viewSheet/:id', component: ViewSheetComponent },
-  { path: '**', redirectTo: 'listSheets', pathMatch: 'full' },
+  { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({

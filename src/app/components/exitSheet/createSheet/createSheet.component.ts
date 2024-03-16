@@ -94,9 +94,11 @@ export class CreateSheetComponent implements OnInit {
 
       setTimeout(() => {
         this.methodsService.downloadPdf(sheet, this.activar, this.spinner);
+
         window.alert('Apriete "OK" para descargar PDF');
-        window.location.reload();
-      }, 500);
+        this.myForm.reset();
+        this.spinner = false;
+      }, 1000);
     } else {
       window.alert('FALTA COMPLETAR FORMULARIO');
     }

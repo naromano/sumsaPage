@@ -6,6 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreateSheetComponent } from './components/exitSheet/createSheet/createSheet.component';
 import { ListSheetsComponent } from './components/exitSheet/list-sheets/list-sheets.component';
+import { EditSheetComponent } from './components/exitSheet/edit-sheet/edit-sheet.component';
+import { ListSheetsAdminComponent } from './components/exitSheet/list-sheets-admin/list-sheets-admin.component';
+import { EditSheetAdminComponent } from './components/exitSheet/edit-sheet-admin/edit-sheet-admin.component';
+import { ViewSheetComponent } from './components/exitSheet/view-sheet/view-sheet.component';
+import { HomeComponent } from './components/home/home.component';
+import { ToolbarComponent } from './components/shared/toolbar/toolbar.component';
 
 //Modulos
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -26,13 +32,20 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { EditSheetComponent } from './components/exitSheet/edit-sheet/edit-sheet.component';
-import { ListSheetsAdminComponent } from './components/exitSheet/list-sheets-admin/list-sheets-admin.component';
-import { EditSheetAdminComponent } from './components/exitSheet/edit-sheet-admin/edit-sheet-admin.component';
-import { ViewSheetComponent } from './components/exitSheet/view-sheet/view-sheet.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
-  declarations: [AppComponent, CreateSheetComponent, ListSheetsComponent, EditSheetComponent, ListSheetsAdminComponent, EditSheetAdminComponent, ViewSheetComponent],
+  declarations: [
+    AppComponent,
+    CreateSheetComponent,
+    ListSheetsComponent,
+    EditSheetComponent,
+    ListSheetsAdminComponent,
+    EditSheetAdminComponent,
+    ViewSheetComponent,
+    HomeComponent,
+    ToolbarComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -48,6 +61,7 @@ import { ViewSheetComponent } from './components/exitSheet/view-sheet/view-sheet
     MatButtonModule,
     MatProgressSpinnerModule,
     FormsModule,
+    MatToolbarModule,
     provideFirebaseApp(() =>
       initializeApp({
         projectId: 'sumsa-3e0e1',
