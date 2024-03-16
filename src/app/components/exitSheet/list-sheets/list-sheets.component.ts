@@ -17,7 +17,7 @@ export class ListSheetsComponent implements OnInit {
     'electrician',
     'inCharge',
     'edit',
-    'delete',
+    //'delete',
   ];
   dataSource = this.sheets;
 
@@ -27,13 +27,18 @@ export class ListSheetsComponent implements OnInit {
   }
 
   getSheets() {
-    this.exitSheetService.getExitSheets().pipe(
-      map(sheets => sheets.filter(sheet => sheet.returnedMaterials === ''))
-    ).subscribe((resp) => {
-      this.dataSource = resp;
-    });
+    this.exitSheetService
+      .getExitSheets()
+      .pipe(
+        map((sheets) =>
+          sheets.filter((sheet) => sheet.returnedMaterials === '')
+        )
+      )
+      .subscribe((resp) => {
+        this.dataSource = resp;
+      });
   }
-  
+
   async deleteSheet(sheet: Sheet) {
     try {
       const response = await this.exitSheetService.deleteExitSheet(sheet);
