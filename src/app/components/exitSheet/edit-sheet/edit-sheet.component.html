@@ -11,7 +11,11 @@
     <span>Destino: {{sheet.departament}}</span>
     <div *ngIf="removedMaterial" >
         <h3>MATERIALES/LUMINARIAS RETIRADAS</h3>
-        <div [innerHTML]="renderizado"></div>
+        <div [innerHTML]="renderRemoved"></div>
+    </div>
+    <div *ngIf="removedMaterial" >
+        <h3>MATERIALES/LUMINARIAS DEVUELTOS</h3>
+        <div [innerHTML]="renderReturned"></div>
     </div>
     <div *ngIf="returnedMaterials">
         <h3>MATERIALES/LUMINARIAS DEVUELTOS</h3>

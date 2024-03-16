@@ -8,41 +8,46 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 @Component({
   selector: 'app-edit-sheet',
   templateUrl: './edit-sheet.component.html',
-  styleUrl: './edit-sheet.component.scss'
+  styleUrl: './edit-sheet.component.scss',
 })
 export class EditSheetComponent implements OnInit {
-
-  sheet!: Sheet
-  id: string
-  mostrar = false
+  sheet!: Sheet;
+  id: string;
+  mostrar = false;
   editorContent: string = '';
   removedMaterials: string;
   activar = false;
   spinner = false;
-  renderizado: SafeHtml = '';
+  renderReturned: SafeHtml = '';
+  renderRemoved: SafeHtml = '';
   removedMaterial = false;
   returnedMaterials = true;
 
-  constructor(private exitSheetServices : ExitSheetService, private aRoute: ActivatedRoute, private methodsService: MethodsService, private sanitizer: DomSanitizer, private router: Router){
-    this.id  = this.aRoute.snapshot.paramMap.get('id');
-
+  constructor(
+    private exitSheetServices: ExitSheetService,
+    private aRoute: ActivatedRoute,
+    private methodsService: MethodsService,
+    private sanitizer: DomSanitizer,
+    private router: Router
+  ) {
+    this.id = this.aRoute.snapshot.paramMap.get('id');
   }
   ngOnInit(): void {
-    this.getExitSheet(this.id)
+    this.getExitSheet(this.id);
   }
 
-  async getExitSheet(id: string){
+  async getExitSheet(id: string) {
     try {
-      const sheet = await this.exitSheetServices.getExitSheet(id)
-      this.sheet = sheet
-      this.removedMaterials = this.sheet.removedMaterials
-      this.mostrar = true
+      const sheet = await this.exitSheetServices.getExitSheet(id);
+      this.sheet = sheet;
+      this.removedMaterials = this.sheet.removedMaterials;
+      this.mostrar = true;
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
-  updateSheet(){
+  updateSheet() {
     this.spinner = true;
     const returnedMaterials = this.sheet.removedMaterials;
 
@@ -55,23 +60,30 @@ export class EditSheetComponent implements OnInit {
       inCharge: this.sheet.inCharge,
       truck: this.sheet.truck,
       returnedMaterials,
-    }
-      this.exitSheetServices.updateExitSheet(this.id, sheet);
-      this.renderHTML(sheet);
-      this.removedMaterial = true;
-      this.returnedMaterials = false;
-      setTimeout(() => {
-        this.methodsService.downloadPdf(sheet, this.activar, this.spinner);
-        window.alert('Apriete "OK" para descargar PDF');
-        this.router.navigateByUrl('/listSheets')
-      }, 500);
+    };
+    this.exitSheetServices.updateExitSheet(this.id, sheet);
+    this.renderHTMLReturned(sheet);
+    this.renderHTMLRemoved(sheet);
 
+    this.removedMaterial = true;
+    this.returnedMaterials = false;
+    setTimeout(() => {
+      this.methodsService.downloadPdf(sheet, this.activar, this.spinner);
+      window.alert('Apriete "OK" para descargar PDF');
+      this.router.navigateByUrl('/listSheets');
+    }, 500);
   }
 
-  renderHTML(sheet: Sheet) {
-    this.renderizado = this.sanitizer.bypassSecurityTrustHtml(
+  renderHTMLReturned(sheet: Sheet) {
+    this.renderReturned = this.sanitizer.bypassSecurityTrustHtml(
       sheet.returnedMaterials
     );
+    return this.renderReturned;
   }
-
+  renderHTMLRemoved(sheet: Sheet) {
+    this.renderRemoved = this.sanitizer.bypassSecurityTrustHtml(
+      sheet.removedMaterials
+    );
+    return this.renderRemoved;
+  }
 }
